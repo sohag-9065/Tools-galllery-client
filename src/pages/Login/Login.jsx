@@ -1,32 +1,34 @@
 import React, { useEffect } from 'react';
-import { useCreateUserWithEmailAndPassword, useUpdateProfile } from 'react-firebase-hooks/auth';
+import { Link,  useLocation, useNavigate } from 'react-router-dom';
+import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
-import { Card, Hero } from 'react-daisyui';
-import { Link, useNavigate } from 'react-router-dom';
 import auth from '../../firebase/firebase.config';
+import { Card, Hero } from 'react-daisyui';
 import SocialLogin from './SocialLogin';
 import Loading from '../shared/Loading';
 
-const SignUp = () => {
+const Login = () => {
     const [
-        createUserWithEmailAndPassword,
+        signInWithEmailAndPassword,
         user,
         loading,
         error
-    ] = useCreateUserWithEmailAndPassword(auth);
-    const [updateProfile] = useUpdateProfile(auth);
+    ] = useSignInWithEmailAndPassword(auth);
     const { register, formState: { errors }, reset, handleSubmit } = useForm();
-    
-    const navigate = useNavigate();
 
-    let signInErrorMesseage;
+    const navigate = useNavigate();
+    const location = useLocation();
+
+
+    let from = location.state?.from?.pathname || "/";
 
     useEffect(() => {
         if (user) {
-            navigate('/home')
+            navigate(from, { replace: true });
         }
-    }, [user, navigate]);
+    }, [user, from, navigate]);
 
+    let signInErrorMesseage;
 
     if (loading) {
         return <Loading></Loading>
@@ -36,34 +38,24 @@ const SignUp = () => {
         signInErrorMesseage = <p>Error: {error.message}</p>;
     }
 
-    const onSubmit = async data => {
-        const { email, password, name } = data;
-        await createUserWithEmailAndPassword(email, password);
-        await updateProfile({ displayName: name });
+
+
+    const onSubmit = data => {
+        const { email, password } = data;
+        signInWithEmailAndPassword(email, password);
+        // console.log(data);
         reset();
-        // console.log(" update done", data);
     };
 
+
     return (
+
         <Hero className='min-h-[70vh]'>
             <Hero.Content className="flex-col lg:flex-row-reverse">
 
                 <Card className="flex-shrink-0 w-full min-w-[400px] shadow-2xl bg-base-100">
                     <Card.Body>
                         <form onSubmit={handleSubmit(onSubmit)} className="form-control">
-                            <label className="label">
-                                <span className="label-text">Name</span>
-                            </label>
-                            <input
-                                type="text"
-                                className="input input-bordered mb-1 w-full"
-                                placeholder='Full Name'
-                                {...register("name",
-                                    {
-                                        required: "Full Name is required",
-                                    }
-                                )}
-                            />
                             <label className="label">
                                 <span className="label-text">Email</span>
                             </label>
@@ -111,9 +103,9 @@ const SignUp = () => {
 
 
                             {signInErrorMesseage}
-                            <input type="submit" className='btn mt-6' value="Sign Up" />
+                            <input type="submit" className='btn mt-6' value="Login" />
                         </form>
-                        <p className='text-xs'>Already have an account? <Link to="/login" className=' text-secondary cursor-pointer'>Please Login</Link></p>
+                        <p className='text-xs'>New to Warehouse? <Link to="/signup" className=' text-secondary cursor-pointer'>Create new account</Link></p>
                         <SocialLogin></SocialLogin>
                     </Card.Body>
                 </Card>
@@ -122,4 +114,4 @@ const SignUp = () => {
     );
 };
 
-export default SignUp;
+export default Login;
