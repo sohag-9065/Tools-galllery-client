@@ -7,7 +7,7 @@ import Loading from './Loading';
 
 const Header = () => {
     const [user, loading] = useAuthState(auth);
-    
+
     if (loading) {
         return <Loading></Loading>
     }
@@ -22,6 +22,7 @@ const Header = () => {
         {
             user ?
                 <>
+                    <li><NavLink to="/dashboard" className={({ isActive }) => isActive ? "bg-[#3A4256] text-white" : undefined}>Dashboard</NavLink></li>
                     <li><button className="btn btn-ghost btn-outline ml-4">{user.displayName}</button></li>
                     <li><NavLink className={({ isActive }) => isActive ? undefined : undefined} onClick={logout} >Sign Out</NavLink></li>
 

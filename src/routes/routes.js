@@ -1,5 +1,7 @@
 import Main from "../layout/Main";
 import Blog from "../pages/Blog/Blog";
+import Dashboard from "../pages/Dashboard/Dashboard";
+import MyProfile from "../pages/Dashboard/MyProfile/MyProfile";
 import Home from "../pages/Home/Home";
 import Login from "../pages/Login/Login";
 import SignUp from "../pages/Login/SignUp";
@@ -31,6 +33,36 @@ export const router = createBrowserRouter([
             {
                 path: '/home/tool-purchase/:toolId',
                 element: <PrivateRoute><ToolPurchase/></PrivateRoute>
+            },
+            {
+                path: '/dashboard',
+                element:<PrivateRoute><Dashboard/></PrivateRoute> ,
+                children: [
+                    {
+                        path: 'my-orders',
+                        element: <MyProfile/>
+                    },
+                    {
+                        path: 'review',
+                        element: <MyProfile/>
+                    },
+                    {
+                        path: 'all-order',
+                        element: <MyProfile/>
+                    },
+                    {
+                        path: 'make-admin',
+                        element: <MyProfile/>
+                    },
+                    {
+                        path: 'manage-products',
+                        element: <MyProfile/>
+                    },
+                    {
+                        path: 'profile',
+                        element: <MyProfile/>
+                    },
+                ]
             },
             {
                 path: '/login',
