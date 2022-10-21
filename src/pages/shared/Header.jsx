@@ -1,12 +1,36 @@
+import { signOut } from 'firebase/auth';
 import React from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
 import { Link, NavLink } from 'react-router-dom';
+import auth from '../../firebase/firebase.config';
+import Loading from './Loading';
 
 const Header = () => {
+    const [user, loading] = useAuthState(auth);
+    
+    if (loading) {
+        return <Loading></Loading>
+    }
+
+    const logout = () => {
+        signOut(auth);
+    };
+
     const menuItems = <>
         <li><NavLink to="/home" className={({ isActive }) => isActive ? "bg-[#3A4256] text-white" : undefined}>Home</NavLink></li>
         <li><NavLink to="/blog" className={({ isActive }) => isActive ? "bg-[#3A4256] text-white" : undefined}>Blog</NavLink></li>
-        <li><NavLink to="/login" className={({ isActive }) => isActive ? "bg-[#3A4256] text-white" : undefined}>login</NavLink></li>
-        
+        {
+            user ?
+                <>
+                    <li><button className="btn btn-ghost btn-outline ml-4">{user.displayName}</button></li>
+                    <li><NavLink className={({ isActive }) => isActive ? undefined : undefined} onClick={logout} >Sign Out</NavLink></li>
+
+
+                </>
+                :
+                <li><NavLink to="/login" className={({ isActive }) => isActive ? "bg-[#3A4256] text-white" : undefined}>Login</NavLink></li>
+        }
+
     </>
     return (
         <div className="navbar bg-base-100 py-8">
@@ -26,7 +50,7 @@ const Header = () => {
                     {menuItems}
                 </ul>
             </div>
-            
+
         </div>
     );
 };

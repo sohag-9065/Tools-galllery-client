@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useCreateUserWithEmailAndPassword, useUpdateProfile } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
 import { Card, Hero } from 'react-daisyui';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import auth from '../../firebase/firebase.config';
 import SocialLogin from './SocialLogin';
 import Loading from '../shared/Loading';
@@ -18,14 +18,17 @@ const SignUp = () => {
     const { register, formState: { errors }, reset, handleSubmit } = useForm();
     
     const navigate = useNavigate();
+    const location = useLocation();
 
     let signInErrorMesseage;
 
+    let from = location.state?.from?.pathname || "/";
+
     useEffect(() => {
         if (user) {
-            navigate('/home')
+            navigate(from, { replace: true });
         }
-    }, [user, navigate]);
+    }, [user, from, navigate]);
 
 
     if (loading) {
@@ -41,7 +44,6 @@ const SignUp = () => {
         await createUserWithEmailAndPassword(email, password);
         await updateProfile({ displayName: name });
         reset();
-        // console.log(" update done", data);
     };
 
     return (

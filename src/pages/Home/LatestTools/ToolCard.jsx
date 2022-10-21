@@ -1,7 +1,8 @@
 import React from 'react';
 import { Button, Card } from 'react-daisyui';
+import { Link } from 'react-router-dom';
 
-const Tool = ({tool}) => {
+const ToolCard = ({tool}) => {
     
     return (
         <div className='shadow-2xl rounded-2xl bg-white'>
@@ -14,7 +15,7 @@ const Tool = ({tool}) => {
                     <Card.Title tag="h2">Drill Machine - I</Card.Title>
                     <p>the strongest hammer for your job done</p>
                     <Card.Actions className="justify-end">
-                        <Button color="primary">Buy Now</Button>
+                    <Link to={`/home/tool-purchase/${tool}`}  ><Button color="primary">Buy Now</Button> </Link>
                     </Card.Actions>
                 </Card.Body>
             </Card>
@@ -22,4 +23,4 @@ const Tool = ({tool}) => {
     );
 };
 
-export default Tool;
+export default ToolCard;

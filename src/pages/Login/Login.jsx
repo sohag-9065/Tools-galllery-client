@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import { Link,  useLocation, useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import {   Navigate,  useLocation, useNavigate } from 'react-router-dom';
 import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
 import auth from '../../firebase/firebase.config';
@@ -15,10 +15,10 @@ const Login = () => {
         error
     ] = useSignInWithEmailAndPassword(auth);
     const { register, formState: { errors }, reset, handleSubmit } = useForm();
+    const [pathSignUp, setPAthSignUp] = useState(false);
 
     const navigate = useNavigate();
     const location = useLocation();
-
 
     let from = location.state?.from?.pathname || "/";
 
@@ -38,14 +38,18 @@ const Login = () => {
         signInErrorMesseage = <p>Error: {error.message}</p>;
     }
 
-
-
     const onSubmit = data => {
         const { email, password } = data;
         signInWithEmailAndPassword(email, password);
         // console.log(data);
         reset();
     };
+
+    if(pathSignUp){
+        location.pathname= from;
+        // console.log(from);
+        return <Navigate to="/sign-up" state={{ from : location }} replace></Navigate>
+    }
 
 
     return (
@@ -105,8 +109,11 @@ const Login = () => {
                             {signInErrorMesseage}
                             <input type="submit" className='btn mt-6' value="Login" />
                         </form>
-                        <p className='text-xs'>New to Warehouse? <Link to="/sign-up" className=' text-secondary cursor-pointer'>Create new account</Link></p>
+                        
+                        {/* <Navigate to="/sign-up" state={{ from : from }} replace> Create new account</Navigate> */}
+                        <p className='text-xs'>New to Warehouse? <button onClick={()=>setPAthSignUp(true)} className=' text-secondary cursor-pointer'>Create new account</button></p>
                         <SocialLogin></SocialLogin>
+                        
                     </Card.Body>
                 </Card>
             </Hero.Content>

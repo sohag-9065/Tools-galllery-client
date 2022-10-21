@@ -4,6 +4,8 @@ import Home from "../pages/Home/Home";
 import Login from "../pages/Login/Login";
 import SignUp from "../pages/Login/SignUp";
 import ErrorPage from "../pages/shared/ErrorPage";
+import ToolPurchase from "../pages/ToolPurchase/ToolPurchase";
+import PrivateRoute from "./PrivateRoute";
 
 const { createBrowserRouter } = require("react-router-dom");
 
@@ -11,28 +13,32 @@ const { createBrowserRouter } = require("react-router-dom");
 export const router = createBrowserRouter([
     {
         path: '/',
-        element: <Main></Main>,
-        errorElement: <ErrorPage></ErrorPage>,
+        element: <Main/>,
+        errorElement: <ErrorPage/>,
         children: [
             {
                 path: '/',
-                element: <Home></Home>
+                element: <Home/>
             },
             {
                 path: '/home',
-                element: <Home></Home>
+                element: <Home/>
             },
             {
                 path: '/blog',
-                element: <Blog></Blog>
+                element: <Blog/>
+            },
+            {
+                path: '/home/tool-purchase/:toolId',
+                element: <PrivateRoute><ToolPurchase/></PrivateRoute>
             },
             {
                 path: '/login',
-                element: <Login></Login>
+                element: <Login/>
             },
             {
                 path: '/sign-up',
-                element: <SignUp></SignUp>
+                element: <SignUp/>
             }
 
         ]
