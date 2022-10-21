@@ -2,6 +2,7 @@ import React from 'react';
 import { Button, Card } from 'react-daisyui';
 
 const Tool = ({tool}) => {
+    
     return (
         <div className='shadow-2xl rounded-2xl bg-white'>
             <Card >
