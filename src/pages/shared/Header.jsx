@@ -19,11 +19,12 @@ const Header = () => {
     const menuItems = <>
         <li><NavLink to="/home" className={({ isActive }) => isActive ? "bg-[#3A4256] text-white" : undefined}>Home</NavLink></li>
         <li><NavLink to="/blog" className={({ isActive }) => isActive ? "bg-[#3A4256] text-white" : undefined}>Blog</NavLink></li>
+        <li><NavLink to="/my-portfolio" className={({ isActive }) => isActive ? "bg-[#3A4256] text-white" : undefined}>My Portfolio</NavLink></li>
         {
             user ?
                 <>
                     <li><NavLink to="/dashboard" className={({ isActive }) => isActive ? "bg-[#3A4256] text-white" : undefined}>Dashboard</NavLink></li>
-                    <li><button className="btn btn-ghost btn-outline ml-4">{user.displayName}</button></li>
+                    <li><button className="btn  btn-outline ml-4">{user.displayName}</button></li>
                     <li><NavLink className={({ isActive }) => isActive ? undefined : undefined} onClick={logout} >Sign Out</NavLink></li>
 
 

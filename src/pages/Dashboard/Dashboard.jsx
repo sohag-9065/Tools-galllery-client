@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Link, Outlet } from 'react-router-dom';
+import { Link, NavLink, Outlet } from 'react-router-dom';
 
 const Dashboard = () => {
 
@@ -9,20 +9,24 @@ const Dashboard = () => {
         <div className="drawer drawer-mobile">
             <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
             <div className="drawer-content  ">
-                <h2 className='text-3xl text-orange-300'>Dashboard</h2>
-                <Outlet></Outlet>
                 <label htmlFor="my-drawer-2" className="btn btn-primary drawer-button lg:hidden">Dashboard</label>
+                {/* <h2 className='text-3xl text-orange-300'>Dashboard</h2> */}
+                <Outlet></Outlet>
+
 
             </div>
-            <div className="drawer-side">
+            <div className="drawer-side ">
                 <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
-                <ul className="menu p-4 overflow-y-auto w-80 bg-base-100 text-base-content">
-                    <li><Link to="my-orders">My Orders</Link></li>
-                    <li><Link to="review">Add A Review</Link></li>
-                    <li><Link to="all-order">Manage All Orders</Link></li>
-                    <li><Link to="make-admin">Make Admin</Link></li>
-                    <li><Link to="manage-products">Manage Products</Link></li>
-                    <li><Link to="profile">My Profile</Link></li>
+                <ul className="menu p-4 overflow-y-auto w-80 bg-slate-400 text-base-content space-y-4 ">
+                    <li><NavLink className='btn btn-primary'>Dashboard</NavLink></li>
+                    <li><NavLink to="my-orders" className={({ isActive }) => isActive ? "btn bg-[#3A4256] text-white" : "btn btn-outline"}>My Orders</NavLink></li>
+                    <li><NavLink to="review" className={({ isActive }) => isActive ? "btn bg-[#3A4256] text-white" : "btn btn-outline"}>Add A Review</NavLink></li>
+                    <li><NavLink to="all-order" className={({ isActive }) => isActive ? "btn bg-[#3A4256] text-white" : "btn btn-outline"}>Manage All Orders</NavLink></li>
+                    <li><NavLink to="manage-products" className={({ isActive }) => isActive ? "btn bg-[#3A4256] text-white" : "btn btn-outline"}>Manage Products</NavLink></li>
+                    <li><NavLink to="add-a-product" className={({ isActive }) => isActive ? "btn bg-[#3A4256] text-white " : "btn btn-outline"}>Add A Product</NavLink></li>
+                    <li><NavLink to="make-admin" className={({ isActive }) => isActive ? "btn bg-[#3A4256] text-white" : "btn btn-outline"}>Make Admin</NavLink></li>
+                    <li><NavLink to="profile" className={({ isActive }) => isActive ? "btn bg-[#3A4256] text-white" : "btn btn-outline"}>My Profile</NavLink></li>
+
                 </ul>
 
             </div>

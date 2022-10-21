@@ -1,25 +1,16 @@
 import React from 'react';
+import { useQuery } from 'react-query';
+import Loading from '../../shared/Loading';
 import Summary from './Summary';
 
 const BusinessSummary = () => {
     
-    const summeries = [
-        {
-            title: "TOTAL CUSTOMERS",
-            quantity: "2K",
-            time: "Jan 1st 2021 - Oct 21 2022"
-        },
-        {
-            title: "EARNED REVIEWS",
-            quantity: "1.5K+",
-            time: "Jan 1st 2021 - Oct 21 2022"
-        },
-        {
-            title: "RECEIVING POINT",
-            quantity: "100+",
-            time: " "
-        },
-    ]
+    const { data: summeries, isLoading } = useQuery('summery', () => fetch('http://localhost:5000/summery').then(res => res.json()),);
+
+    if (isLoading ) {
+        return <Loading></Loading>
+    }
+
     return (
         <div className=' py-8'>
             <h1 className='text-4xl text-center mb-8 text-lime-500 mt-12 font-semibold'>Business Summary</h1>
@@ -37,3 +28,7 @@ const BusinessSummary = () => {
 };
 
 export default BusinessSummary;
+
+
+
+

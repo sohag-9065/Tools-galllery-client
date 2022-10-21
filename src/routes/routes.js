@@ -1,10 +1,12 @@
 import Main from "../layout/Main";
 import Blog from "../pages/Blog/Blog";
+import AddAProduct from "../pages/Dashboard/AddAProduct";
 import Dashboard from "../pages/Dashboard/Dashboard";
 import MyProfile from "../pages/Dashboard/MyProfile/MyProfile";
 import Home from "../pages/Home/Home";
 import Login from "../pages/Login/Login";
 import SignUp from "../pages/Login/SignUp";
+import MyPortfolio from "../pages/MyPortfolio/MyPortfolio";
 import ErrorPage from "../pages/shared/ErrorPage";
 import ToolPurchase from "../pages/ToolPurchase/ToolPurchase";
 import PrivateRoute from "./PrivateRoute";
@@ -31,6 +33,10 @@ export const router = createBrowserRouter([
                 element: <Blog/>
             },
             {
+                path: '/my-portfolio',
+                element: <MyPortfolio/>
+            },
+            {
                 path: '/home/tool-purchase/:toolId',
                 element: <PrivateRoute><ToolPurchase/></PrivateRoute>
             },
@@ -51,11 +57,15 @@ export const router = createBrowserRouter([
                         element: <MyProfile/>
                     },
                     {
-                        path: 'make-admin',
+                        path: 'manage-products',
                         element: <MyProfile/>
                     },
                     {
-                        path: 'manage-products',
+                        path: 'add-a-product',
+                        element: <AddAProduct/>
+                    },
+                    {
+                        path: 'make-admin',
                         element: <MyProfile/>
                     },
                     {
