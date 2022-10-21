@@ -1,7 +1,7 @@
 import React from 'react';
 import { useQuery } from 'react-query';
 import Loading from '../../shared/Loading';
-import ToolCard from './ToolCard';
+import ToolCard from '../../shared/ToolCard';
 
 const LatestTools = () => {
     const { data: tools, isLoading } = useQuery('summery', () => fetch('http://localhost:5000/tools').then(res => res.json()),);

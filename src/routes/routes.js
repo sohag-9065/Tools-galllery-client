@@ -37,7 +37,13 @@ export const router = createBrowserRouter([
                 element: <MyPortfolio/>
             },
             {
-                path: '/home/tool-purchase/:toolId',
+                path: 'tool-purchase/:toolId',
+                loader: ({ params }) => fetch(`http://localhost:5000/tool/${params.toolId}`, {
+                    method: 'GET',
+                    headers: {
+                        'content-type': 'application/json',
+                    }
+                }),
                 element: <PrivateRoute><ToolPurchase/></PrivateRoute>
             },
             {

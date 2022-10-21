@@ -16,11 +16,11 @@ const ToolCard = ({ tool, children }) => {
                     <Card.Title tag="h2">{tool_name}</Card.Title>
                     <p>{description}</p>
                     <p>Price: ${price}</p>
-                    <p>Available: {available_quantity}</p>
+                    <p>Available Tool: {available_quantity}</p>
                     <p>Minimum Order: {minimum_quantity}</p>
                     <p><small>Supplier Name: {supplier_name}</small></p>
                     <Card.Actions className={(children ? "justify-between" : "justify-end")}>
-                        <Link to={`/inventory/${_id}`}  ><Button color="primary">Buy Now</Button> </Link>
+                        <Link to={`/tool-purchase/${_id}`}  ><Button color="primary">Buy Now</Button> </Link>
                         {children}
                     </Card.Actions>
                 </Card.Body>
