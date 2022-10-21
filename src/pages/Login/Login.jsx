@@ -105,7 +105,7 @@ const Login = () => {
                             {signInErrorMesseage}
                             <input type="submit" className='btn mt-6' value="Login" />
                         </form>
-                        <p className='text-xs'>New to Warehouse? <Link to="/signup" className=' text-secondary cursor-pointer'>Create new account</Link></p>
+                        <p className='text-xs'>New to Warehouse? <Link to="/sign-up" className=' text-secondary cursor-pointer'>Create new account</Link></p>
                         <SocialLogin></SocialLogin>
                     </Card.Body>
                 </Card>
