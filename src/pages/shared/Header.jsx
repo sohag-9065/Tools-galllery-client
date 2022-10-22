@@ -14,6 +14,7 @@ const Header = () => {
 
     const logout = () => {
         signOut(auth);
+        localStorage.removeItem('accessToken');
     };
 
     const menuItems = <>

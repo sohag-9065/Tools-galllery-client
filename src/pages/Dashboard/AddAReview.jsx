@@ -27,7 +27,7 @@ const AddAReview = () => {
             user_review: event.review,
             user_rating: rating,
         }
-        console.log(review);
+        // console.log(review);
         reset();
         // // sent to database of new tool information 
         fetch('http://localhost:5000/review', {

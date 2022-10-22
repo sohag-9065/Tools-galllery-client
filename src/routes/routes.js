@@ -4,6 +4,7 @@ import Blog from "../pages/Blog/Blog";
 import AddAProduct from "../pages/Dashboard/AddAProduct";
 import AddAReview from "../pages/Dashboard/AddAReview";
 import Dashboard from "../pages/Dashboard/Dashboard";
+import ManageOrders from "../pages/Dashboard/ManageOrders/ManageOrders";
 import MyOrders from "../pages/Dashboard/MyOrders/MyOrders";
 import MyProfile from "../pages/Dashboard/MyProfile/MyProfile";
 import Home from "../pages/Home/Home";
@@ -12,7 +13,9 @@ import SignUp from "../pages/Login/SignUp";
 import MyPortfolio from "../pages/MyPortfolio/MyPortfolio";
 import ErrorPage from "../pages/shared/ErrorPage";
 import ToolPurchase from "../pages/ToolPurchase/ToolPurchase";
+import ManageProducts from '../pages/Dashboard/ManageProducts/ManageProducts'
 import PrivateRoute from "./PrivateRoute";
+import MakeAdmin from "../pages/Dashboard/MakeAdmin/MakeAdmin";
 
 const { createBrowserRouter } = require("react-router-dom");
 
@@ -52,6 +55,14 @@ export const router = createBrowserRouter([
                 element:<PrivateRoute><Dashboard/></PrivateRoute> ,
                 children: [
                     {
+                        path: '',
+                        element: <MyProfile/>
+                    },
+                    {
+                        path: 'manage-products',
+                        element: <ManageProducts/>
+                    },
+                    {
                         path: 'my-orders',
                         element: <MyOrders/>
                     },
@@ -61,11 +72,7 @@ export const router = createBrowserRouter([
                     },
                     {
                         path: 'all-order',
-                        element: <MyProfile/>
-                    },
-                    {
-                        path: 'manage-products',
-                        element: <MyProfile/>
+                        element: <ManageOrders/>
                     },
                     {
                         path: 'add-a-product',
@@ -73,7 +80,7 @@ export const router = createBrowserRouter([
                     },
                     {
                         path: 'make-admin',
-                        element: <MyProfile/>
+                        element: <MakeAdmin/>
                     },
                     {
                         path: 'profile',

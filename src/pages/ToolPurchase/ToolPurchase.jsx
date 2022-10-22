@@ -11,27 +11,28 @@ const ToolPurchase = () => {
     const [user] = useAuthState(auth);
     const [errorMessage, setErrorMessage] = useState('');
     const { toolId } = useParams();
-    console.log(user);
+    // console.log(user);
 
-    const { data: tool, isLoading, refetch , error } = useQuery('services', () => fetch(`http://localhost:5000/tool/${toolId}`, {
+    const { data: tool, isLoading, refetch } = useQuery('services', () => fetch(`http://localhost:5000/tool/${toolId}`, {
         method: 'GET',
         headers: {
             'content-type': 'application/json',
         }
     }).then(res => res.json()),);
 
-    if(error){
-        console.log(error);
-    }
+
 
     if (isLoading) {
         return <Loading></Loading>
     }
     const { _id, supplier_name, tool_name, description, price, available_quantity, minimum_quantity, img } = tool;
 
+    const availabe_q = parseInt(available_quantity);
+    const minimum_q = parseInt(minimum_quantity);
+
     const handOrder = event => {
-        const availabe_q = parseInt(available_quantity);
-        const minimum_q = parseInt(minimum_quantity);
+        // const availabe_q = parseInt(available_quantity);
+        // const minimum_q = parseInt(minimum_quantity);
         const orders_q = parseInt(event.target.value);
 
         if (orders_q > availabe_q) {
@@ -103,7 +104,7 @@ const ToolPurchase = () => {
     const handleSubmit = event => {
         event.preventDefault();
         const order_quantity = event.target.order_quantity.value;
-        event.target.order_quantity.value = 3;
+        event.target.order_quantity.value = minimum_q;
 
         handleToolAvalableQuantity(order_quantity);
     }
@@ -127,13 +128,13 @@ const ToolPurchase = () => {
                         <p className="pb-2">Minimum Order : {minimum_quantity}</p>
 
                         {
-                            available_quantity < minimum_quantity ?
+                            availabe_q < minimum_q ?
                                 <p className='text-red-500 font-medium text-3xl'>Stock Out</p>
                                 :
                                 <form onSubmit={handleSubmit}>
                                     <p className='mt-6 mb-2'>How many tools order?</p>
                                     <input onChange={handOrder} type="number" className=' border-2 p-3 mr-4 rounded-lg w-32' name='order_quantity' defaultValue={minimum_quantity}></input>
-                                    <input type="submit" value="Order Confirm" className={(errorMessage || available_quantity < minimum_quantity ? "btn btn-disabled " : "btn btn-outline btn-info ")} />
+                                    <input type="submit" value="Order Confirm" className={(errorMessage || availabe_q < minimum_q ? "btn btn-disabled " : "btn btn-outline btn-info ")} />
                                 </form>
                         }
 

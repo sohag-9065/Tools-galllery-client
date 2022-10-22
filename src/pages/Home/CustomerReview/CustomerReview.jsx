@@ -10,7 +10,7 @@ const CustomerReview = () => {
     if (isLoading) {
         return <Loading></Loading>
     }
-    console.log(reviews);
+    // console.log(reviews);
 
     return (
         <div className=' py-8'>

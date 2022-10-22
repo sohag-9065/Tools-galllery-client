@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Button } from 'react-daisyui';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useQuery } from 'react-query';
 import auth from '../../../firebase/firebase.config';
@@ -9,6 +10,8 @@ import MyOrderCard from './MyOrderCard';
 const MyOrders = () => {
     const [user] = useAuthState(auth);
     const [deleteProduct, setDeleteProduct] = useState(false);
+
+    const url = "order";
 
     // useEffect( ,[])
 
@@ -30,8 +33,13 @@ const MyOrders = () => {
                         tools.map((tool, index) => <MyOrderCard
                             key={index}
                             tool={tool}
-                            setDeleteProduct={setDeleteProduct}
-                        ></MyOrderCard>)
+                        >
+                            <div className='flex justify-between mt-4'>
+                                <label onClick={() => setDeleteProduct(tool)} htmlFor="delete-confirm-modal" className="btn  btn-error">Cancel</label>
+                                <Button color="info">Payment</Button>
+                            </div>
+
+                        </MyOrderCard>)
                     }
 
                 </div>
@@ -39,6 +47,7 @@ const MyOrders = () => {
                     deleteProduct && <DeleteConfirmationModal
                         deleteProduct={deleteProduct}
                         setDeleteProduct={setDeleteProduct}
+                        url={url}
                         refetch={refetch}
                     >
                     </DeleteConfirmationModal>

@@ -6,6 +6,7 @@ import auth from '../../firebase/firebase.config';
 import { Card, Hero } from 'react-daisyui';
 import SocialLogin from './SocialLogin';
 import Loading from '../shared/Loading';
+import useToken from '../../hooks/useToken';
 
 const Login = () => {
     const [
@@ -20,13 +21,16 @@ const Login = () => {
     const navigate = useNavigate();
     const location = useLocation();
 
+    const [token] = useToken(user);
+
     let from = location.state?.from?.pathname || "/";
 
     useEffect(() => {
-        if (user) {
+        if (token) {
             navigate(from, { replace: true });
         }
-    }, [user, from, navigate]);
+    }, [token, from, navigate]);
+
 
     let signInErrorMesseage;
 

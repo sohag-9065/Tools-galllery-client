@@ -6,6 +6,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import auth from '../../firebase/firebase.config';
 import SocialLogin from './SocialLogin';
 import Loading from '../shared/Loading';
+import useToken from '../../hooks/useToken';
 
 const SignUp = () => {
     const [
@@ -22,13 +23,16 @@ const SignUp = () => {
 
     let signInErrorMesseage;
 
+    const [token] = useToken(user);
+
     let from = location.state?.from?.pathname || "/";
 
     useEffect(() => {
-        if (user) {
+        if (token) {
             navigate(from, { replace: true });
         }
-    }, [user, from, navigate]);
+    }, [token, from, navigate]);
+
 
 
     if (loading) {
