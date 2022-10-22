@@ -1,7 +1,10 @@
 import Main from "../layout/Main";
+import AllReview from "../pages/AllReview/AllReview";
 import Blog from "../pages/Blog/Blog";
 import AddAProduct from "../pages/Dashboard/AddAProduct";
+import AddAReview from "../pages/Dashboard/AddAReview";
 import Dashboard from "../pages/Dashboard/Dashboard";
+import MyOrders from "../pages/Dashboard/MyOrders/MyOrders";
 import MyProfile from "../pages/Dashboard/MyProfile/MyProfile";
 import Home from "../pages/Home/Home";
 import Login from "../pages/Login/Login";
@@ -33,17 +36,15 @@ export const router = createBrowserRouter([
                 element: <Blog/>
             },
             {
+                path: '/all-reviews',
+                element: <AllReview/>
+            },
+            {
                 path: '/my-portfolio',
                 element: <MyPortfolio/>
             },
             {
-                path: 'tool-purchase/:toolId',
-                loader: ({ params }) => fetch(`http://localhost:5000/tool/${params.toolId}`, {
-                    method: 'GET',
-                    headers: {
-                        'content-type': 'application/json',
-                    }
-                }),
+                path: '/tool-purchase/:toolId',
                 element: <PrivateRoute><ToolPurchase/></PrivateRoute>
             },
             {
@@ -52,11 +53,11 @@ export const router = createBrowserRouter([
                 children: [
                     {
                         path: 'my-orders',
-                        element: <MyProfile/>
+                        element: <MyOrders/>
                     },
                     {
                         path: 'review',
-                        element: <MyProfile/>
+                        element: <AddAReview/>
                     },
                     {
                         path: 'all-order',

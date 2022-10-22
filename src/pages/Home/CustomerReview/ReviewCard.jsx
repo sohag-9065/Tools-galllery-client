@@ -1,12 +1,25 @@
 import React from 'react';
+import { FaUserAlt } from "react-icons/fa";
 
 const ReviewCard = ({ review }) => {
-    const { name, comment, star } = review;
+    const { user_name, photoURL, user_rating, user_review } = review;
+    console.log(review);
     return (
-        <div className=" shadow text-center text-white min-h-[200px] p-6 bg-gray-600 rounded-3xl">
-            <h1 className='text-3xl font-bold'>{name}</h1>
-            <p className=' text-xl my-4'>{comment}</p>
-            <p className='text-xl'>Rating: {star}</p>
+        <div className=" shadow  text-white min-h-[200px] min-w-[400px] p-6 bg-gray-600 rounded-3xl">
+            <div className='flex  items-center gap-6'>
+                {
+                    photoURL ?
+                        <img src={photoURL} alt="" className='rounded-full' />
+                        :
+                        <FaUserAlt className='w-16 h-16 text-center' />
+                }
+
+                <div className='text-start'>
+                    <p>{user_name}</p>
+                    <p>{user_rating}</p>
+                </div>
+            </div>
+            <p className=' text-xl my-4'>{user_review}</p>
         </div>
 
 

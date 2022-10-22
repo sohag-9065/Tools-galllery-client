@@ -1,12 +1,14 @@
 import React from 'react';
+import { Button } from 'react-daisyui';
 import { useQuery } from 'react-query';
+import { Link } from 'react-router-dom';
 import Loading from '../../shared/Loading';
 import ToolCard from '../../shared/ToolCard';
 
 const LatestTools = () => {
-    const { data: tools, isLoading } = useQuery('summery', () => fetch('http://localhost:5000/tools').then(res => res.json()),);
+    const { data: tools, isLoading } = useQuery('all-tool', () => fetch('http://localhost:5000/tools').then(res => res.json()),);
 
-    if (isLoading ) {
+    if (isLoading) {
         return <Loading></Loading>
     }
     return (
@@ -16,9 +18,12 @@ const LatestTools = () => {
                 <div className='grid grid-cols-1 lg:grid-cols-3  gap-2 lg:gap-6 '>
                     {
                         tools.map((tool, index) => <ToolCard
-                        key={index}
-                        tool={tool}
+                            key={index}
+                            tool={tool}
                         >
+                            <div className='flex justify-end'>
+                                <Link to={`/tool-purchase/${tool._id}`} ><Button color="primary">Buy Now</Button> </Link>
+                            </div>
                         </ToolCard>)
                     }
 

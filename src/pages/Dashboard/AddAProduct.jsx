@@ -33,7 +33,7 @@ const AddAProduct = () => {
             .then(result => {
                 if (result.success) {
                     const img = result.data.url
-                    const doctor = {
+                    const tool = {
                         supplier_name: user.name,
                         email: user.email,
                         tool_name: data.tool_name,
@@ -49,7 +49,7 @@ const AddAProduct = () => {
                         headers: {
                             'content-type': 'application/json',
                         },
-                        body: JSON.stringify(doctor)
+                        body: JSON.stringify(tool)
                     })
                         .then(res => res.json())
                         .then(inserted => {

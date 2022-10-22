@@ -19,6 +19,7 @@ const Header = () => {
     const menuItems = <>
         <li><NavLink to="/home" className={({ isActive }) => isActive ? "bg-[#3A4256] text-white" : undefined}>Home</NavLink></li>
         <li><NavLink to="/blog" className={({ isActive }) => isActive ? "bg-[#3A4256] text-white" : undefined}>Blog</NavLink></li>
+        <li><NavLink to="/all-reviews" className={({ isActive }) => isActive ? "bg-[#3A4256] text-white" : undefined}>Reviews</NavLink></li>
         <li><NavLink to="/my-portfolio" className={({ isActive }) => isActive ? "bg-[#3A4256] text-white" : undefined}>My Portfolio</NavLink></li>
         {
             user ?

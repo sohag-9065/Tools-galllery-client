@@ -13,7 +13,6 @@ const Dashboard = () => {
                 {/* <h2 className='text-3xl text-orange-300'>Dashboard</h2> */}
                 <Outlet></Outlet>
 
-
             </div>
             <div className="drawer-side ">
                 <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
