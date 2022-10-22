@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useCreateUserWithEmailAndPassword, useUpdateProfile } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
 import { Card, Hero } from 'react-daisyui';
@@ -7,6 +7,7 @@ import auth from '../../firebase/firebase.config';
 import SocialLogin from './SocialLogin';
 import Loading from '../shared/Loading';
 import useToken from '../../hooks/useToken';
+import useProfileUpdate from '../../hooks/useProfileUpdate';
 
 const SignUp = () => {
     const [
@@ -15,24 +16,31 @@ const SignUp = () => {
         loading,
         error
     ] = useCreateUserWithEmailAndPassword(auth);
-    const [updateProfile] = useUpdateProfile(auth);
+    const [updateProfile, updating] = useUpdateProfile(auth);
     const { register, formState: { errors }, reset, handleSubmit } = useForm();
-    
+
+    const [userInfo, setUserInfo] = useState({});
+ 
     const navigate = useNavigate();
     const location = useLocation();
 
     let signInErrorMesseage;
 
     const [token] = useToken(user);
+    const [userInfoUpdate] =  useProfileUpdate(userInfo);
+
 
     let from = location.state?.from?.pathname || "/";
+
+    
+   
 
     useEffect(() => {
         if (token) {
             navigate(from, { replace: true });
         }
-    }, [token, from, navigate]);
 
+    }, [token, from, navigate]);
 
 
     if (loading) {
@@ -45,10 +53,15 @@ const SignUp = () => {
 
     const onSubmit = async data => {
         const { email, password, name } = data;
+        console.log(data);
+        setUserInfo({email: email, name: name});
+
         await createUserWithEmailAndPassword(email, password);
         await updateProfile({ displayName: name });
         reset();
     };
+
+
 
     return (
         <Hero className='min-h-[70vh]'>

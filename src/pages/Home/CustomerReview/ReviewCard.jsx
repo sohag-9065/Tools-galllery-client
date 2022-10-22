@@ -3,7 +3,7 @@ import { FaUserAlt } from "react-icons/fa";
 
 const ReviewCard = ({ review }) => {
     const { user_name, photoURL, user_rating, user_review } = review;
-    console.log(photoURL);
+    // console.log(photoURL);
     return (
         <div className=" shadow  text-white min-h-[200px] min-w-[400px] p-6 bg-gray-600 rounded-3xl">
             <div className='flex  items-center gap-6'>

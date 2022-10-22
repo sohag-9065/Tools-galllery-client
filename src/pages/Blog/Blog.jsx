@@ -90,6 +90,7 @@ const Blog = () => {
                         </div>
                     </details>
                 </div>
+               
             </div>
         </section>
     );
