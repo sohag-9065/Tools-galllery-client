@@ -34,7 +34,7 @@ const AddAProduct = () => {
                 if (result.success) {
                     const img = result.data.url
                     const tool = {
-                        supplier_name: user.name,
+                        supplier_name: user.displayName,
                         email: user.email,
                         tool_name: data.tool_name,
                         description: data.description,

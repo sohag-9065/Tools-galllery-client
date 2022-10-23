@@ -1,5 +1,4 @@
 import React from 'react';
-import { Button } from 'react-daisyui';
 import { useQuery } from 'react-query';
 import { Link } from 'react-router-dom';
 import Loading from '../../shared/Loading';
@@ -26,10 +25,7 @@ const CustomerReview = () => {
 
                 </div>
                 <div className='text-center mt-12'>
-                    <Link to="/all-reviews">All Reviews</Link>
-                    <Button color="primary  ">
-                        All Reviews
-                    </Button>
+                    <Link to="/all-reviews" className='btn  btn-primary'>All Reviews</Link>
                 </div>
             </div>
             

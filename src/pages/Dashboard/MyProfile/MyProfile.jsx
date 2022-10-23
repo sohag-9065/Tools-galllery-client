@@ -9,16 +9,16 @@ import Loading from '../../shared/Loading';
 
 const MyProfile = () => {
     const [user, loading] = useAuthState(auth);
-    const { register,  reset, handleSubmit } = useForm();
+    const { register, reset, handleSubmit } = useForm();
     const [loadingImg, setLodingImg] = useState(false);
 
-    const { data: users, isLoading , refetch } = useQuery('users', () => fetch(`http://localhost:5000/user/${user.email}`,{
-            method: 'GET',
-            headers: {
-                'authorization': `Bearer ${localStorage.getItem('accessToken')}`
-            }
+    const { data: users, isLoading, refetch } = useQuery('users', () => fetch(`http://localhost:5000/user/${user.email}`, {
+        method: 'GET',
+        headers: {
+            'authorization': `Bearer ${localStorage.getItem('accessToken')}`
         }
-    ).then(res => res.json()), );
+    }
+    ).then(res => res.json()),);
 
     const imagestorageKey = '3582de6481b734f98ff58713b1465520';
 
@@ -26,14 +26,21 @@ const MyProfile = () => {
         return <Loading></Loading>
     }
 
-    console.log(users);
+    // console.log(user);
 
+    // console.log(users[0]);
     const { name, email, address, city, state, zip, username, website, img, bio } = users[0];
 
 
+
     const onSubmit = data => {
-        const { address, bio, city, state, username, website, zip } = data;
-        let userInfo = { name: user.name, email: user.email, address, bio, city, state, username, website, zip }
+
+        let inputData = {};
+        for(let info in data){
+            if(data[info] && info !== "image"){
+                inputData = {...inputData, [info]:data[info]}
+            } 
+        }
         const image = data.image[0];
         let img = "";
         if (image) {
@@ -49,14 +56,14 @@ const MyProfile = () => {
                 .then(result => {
                     if (result.success) {
                         img = result.data.url
-                        userInfo = { ...userInfo, img }
-                        handleUserInfoUpdate(userInfo)
+                        inputData = { ...inputData, img }
+                        handleUserInfoUpdate(inputData)
                     }
                     console.log('imgbb: ', result);
                 })
         }
         else {
-            handleUserInfoUpdate(userInfo)
+            handleUserInfoUpdate(inputData)
         }
 
         // console.log(handleUserInfoUpdate(userInfo));
@@ -64,7 +71,7 @@ const MyProfile = () => {
     };
 
     const handleUserInfoUpdate = userInfo => {
-        fetch(`http://localhost:5000/user/profile/${user.email}`, {
+        fetch(`http://localhost:5000/user/profile/${email}`, {
             method: "PUT",
             headers: {
                 'content-type': 'application/json',
@@ -74,7 +81,7 @@ const MyProfile = () => {
             .then(res => res.json())
             .then(inserted => {
                 setLodingImg(false)
-                if (inserted.result.acknowledged || inserted.success) {
+                if (inserted?.acknowledged || inserted?.success) {
                     toast.success("Tool added successfully");
                     refetch();
                     reset();
@@ -82,7 +89,8 @@ const MyProfile = () => {
                 else {
                     toast.error("Failed to add the tool");
                 }
-                console.log('User: ', inserted);
+               
+                // console.log('User: ', inserted);
             })
     }
 

@@ -16,6 +16,10 @@ import ToolPurchase from "../pages/ToolPurchase/ToolPurchase";
 import ManageProducts from '../pages/Dashboard/ManageProducts/ManageProducts'
 import PrivateRoute from "./PrivateRoute";
 import MakeAdmin from "../pages/Dashboard/MakeAdmin/MakeAdmin";
+import AboutMe from "../pages/MyPortfolio/AboutMe";
+import Education from "../pages/MyPortfolio/Education";
+import Project from "../pages/MyPortfolio/Project";
+import Technology from "../pages/MyPortfolio/Technology";
 
 const { createBrowserRouter } = require("react-router-dom");
 
@@ -44,7 +48,30 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/my-portfolio',
-                element: <MyPortfolio/>
+                element: <MyPortfolio/>,
+                children: [
+                    {
+                        path: '',
+                        element: <AboutMe/>
+                    },
+                    {
+                        path: 'about-me',
+                        element: <AboutMe/>
+                    },
+                    {
+                        path: 'education',
+                        element: <Education/>
+                    },
+                    {
+                        path: 'project',
+                        element: <Project/>
+                    },
+                    {
+                        path: 'technology',
+                        element: <Technology/>
+                    }
+                    
+                ]
             },
             {
                 path: '/tool-purchase/:toolId',

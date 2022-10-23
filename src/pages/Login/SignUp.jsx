@@ -65,6 +65,7 @@ const SignUp = () => {
 
     return (
         <Hero className='min-h-[70vh]'>
+            
             <Hero.Content className="flex-col lg:flex-row-reverse">
 
                 <Card className="flex-shrink-0 w-full min-w-[400px] shadow-2xl bg-base-100">

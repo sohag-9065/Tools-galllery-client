@@ -6,7 +6,7 @@ const useProfileUpdate = (userInfo) => {
         const name = userInfo?.name;
         const email = userInfo?.email;
         const currentUser = {email: email, name: name};
-        console.log(currentUser);
+        // console.log(currentUser);
         if(email){
             
             fetch(`http://localhost:5000/user/profile/${email}`,{

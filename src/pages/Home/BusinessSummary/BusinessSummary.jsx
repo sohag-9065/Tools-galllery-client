@@ -1,29 +1,86 @@
-import React from 'react';
-import { useQuery } from 'react-query';
-import Loading from '../../shared/Loading';
-import Summary from './Summary';
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+    faUsers,
+    faMedal,
+    faLocationDot,
+} from "@fortawesome/free-solid-svg-icons";
+import React from "react";
 
 const BusinessSummary = () => {
-    
-    const { data: summeries, isLoading } = useQuery('summery', () => fetch('http://localhost:5000/summery').then(res => res.json()),);
-
-    if (isLoading ) {
-        return <Loading></Loading>
-    }
-
+    const date = new Date();
+    const month = date.getMonth();
+    const monthName = [
+        "Jan",
+        "Feb",
+        "Mar",
+        "Apr",
+        "May",
+        "Jun",
+        "Jul",
+        "Aug",
+        "Sept",
+        "Oct",
+        "Nov",
+        "Dec",
+    ];
+    const day = date.getDate();
+    const year = date.getFullYear();
     return (
-        <div className=' py-8'>
-            <h1 className='text-4xl text-center mb-8 text-lime-500 mt-12 font-semibold'>Business Summary</h1>
-            <div className='grid  grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 lg:gap-7 justify-items-center bg-slate-300 mx-12 md:mx-20 lg:mx-40 py-20 px-6 lg:px-10 rounded-2xl'>
-                {
-                    summeries.map((summery, index) =>  <Summary
-                    key={index}
-                    summery={summery}
-                    ></Summary>)
-                }
-                
+        <section className="py-8 my-16 w-full ">
+            <h2 className="text-center text-4xl sm:text-5xl text-primary  capitalize font-semibold">
+                buisness <span className="text-secondary">summery</span>
+            </h2>
+            <div className="px-8 lg:px-16 mt-12">
+                <div className="stats w-full stats-vertical sm:stats-horizontal shadow ">
+                    <div className="stat text-center">
+                        <div className="mx-auto pb-4">
+                            <FontAwesomeIcon
+                                icon={faUsers}
+                                className="text-secondary font-bold w-16 h-16"
+                            />
+                        </div>
+                        <div className="stat-title text-primary font-semibold text-lg uppercase">
+                            Total customers
+                        </div>
+                        <div className="stat-value text-primary">2K</div>
+                        <div className="stat-desc">
+                            Jan 1st 2021 - {monthName[month]} {day} {year}
+                        </div>
+                    </div>
+
+                    <div className="stat text-center">
+                        <div className="mx-auto pb-4">
+                            <FontAwesomeIcon
+                                icon={faMedal}
+                                className="text-secondary font-bold w-16 h-16"
+                            />
+                        </div>
+                        <div className="stat-title text-primary font-semibold text-lg uppercase">
+                            Earned Reviews
+                        </div>
+                        <div className="stat-value text-primary">1.5K+</div>
+                        <div className="stat-desc">
+                            Jan 1st 2021 - {monthName[month]} {day} {year}
+                        </div>
+                    </div>
+
+                    <div className="stat text-center">
+                        <div className="mx-auto pb-4">
+                            <FontAwesomeIcon
+                                icon={faLocationDot}
+                                className="text-secondary font-bold w-16 h-16"
+                            />
+                        </div>
+                        <div className="stat-title text-primary font-semibold uppercase text-lg">
+                            Receiving point
+                        </div>
+                        <div className="stat-value text-primary">100+</div>
+                        {/* <div className="stat-desc">↘︎ 90 (14%)</div> */}
+                    </div>
+                </div>
             </div>
-        </div>
+        </section>
     );
 };
 
