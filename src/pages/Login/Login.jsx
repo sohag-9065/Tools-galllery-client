@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import {   Navigate,  useLocation, useNavigate } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import {   Link,   useLocation, useNavigate } from 'react-router-dom';
 import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
 import auth from '../../firebase/firebase.config';
@@ -16,7 +16,7 @@ const Login = () => {
         error
     ] = useSignInWithEmailAndPassword(auth);
     const { register, formState: { errors }, reset, handleSubmit } = useForm();
-    const [pathSignUp, setPathSignUp] = useState(false);
+    // const [pathSignUp, setPathSignUp] = useState(false);
 
     const navigate = useNavigate();
     const location = useLocation();
@@ -49,11 +49,11 @@ const Login = () => {
         reset();
     };
 
-    if(pathSignUp){
-        location.pathname= from;
-        // console.log(from);
-        return <Navigate to="/sign-up" state={{ from : location }} replace></Navigate>
-    }
+    // if(pathSignUp){
+    //     location.pathname= from;
+    //     console.log(from);
+    //     return <Navigate to="/sign-up" state={{ from : location }} replace></Navigate>
+    // }
 
 
     return (
@@ -114,8 +114,8 @@ const Login = () => {
                             <input type="submit" className='btn mt-6' value="Login" />
                         </form>
                         
-                        {/* <Navigate to="/sign-up" state={{ from : from }} replace> Create new account</Navigate> */}
-                        <p className='text-xs'>New to Warehouse? <button onClick={()=>setPathSignUp(true)} className=' text-secondary cursor-pointer'>Create new account</button></p>
+                        <p className='text-xs'>New to Warehouse?<Link to="/sign-up" className=' text-secondary cursor-pointer'> Create new account</Link></p>
+                        {/* <p className='text-xs'>New to Warehouse? <button onClick={()=>setPathSignUp(true)} className=' text-secondary cursor-pointer'>Create new account</button></p> */}
                         <SocialLogin></SocialLogin>
                         
                     </Card.Body>

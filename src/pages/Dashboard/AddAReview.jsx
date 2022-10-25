@@ -30,7 +30,7 @@ const AddAReview = () => {
         // console.log(review);
         reset();
         // // sent to database of new tool information 
-        fetch('https://vercel-deploy-tools-server-dmeivwp9y-sohag-9065.vercel.app/review', {
+        fetch('https://vercel-deploy-tools-server.vercel.app/review', {
             method: "POST",
             headers: {
                 'content-type': 'application/json',

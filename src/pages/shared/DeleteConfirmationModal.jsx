@@ -6,7 +6,7 @@ const DeleteConfirmationModal = ({ deleteProduct, setDeleteProduct, url, refetch
     // console.log(deleteProduct);
 
     const handleDeleteButton = () => {
-        fetch(`https://vercel-deploy-tools-server-dmeivwp9y-sohag-9065.vercel.app/${url}/${_id}`, {
+        fetch(`https://vercel-deploy-tools-server.vercel.app/${url}/${_id}`, {
             method: "DELETE",
             headers: {
                 'authorization': `Bearer ${localStorage.getItem('accessToken')}`

@@ -24,11 +24,14 @@ const SocialLogin = () => {
 
     let from = location.state?.from?.pathname || "/";
 
+    
+
     useEffect(() => {
-        if (token) {
+        if (user) {
+            console.log(from);
             navigate(from, { replace: true });
         }
-    }, [token, from, navigate]);
+    }, [user, from, navigate]);
 
 
     if(loading){

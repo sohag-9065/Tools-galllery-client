@@ -5,7 +5,7 @@ import Loading from '../../shared/Loading';
 import ReviewCard from './ReviewCard';
 
 const CustomerReview = () => {
-    const { data: reviews, isLoading } = useQuery('reviews', () => fetch('https://vercel-deploy-tools-server-dmeivwp9y-sohag-9065.vercel.app/review').then(res => res.json()),);
+    const { data: reviews, isLoading } = useQuery('reviews', () => fetch('https://vercel-deploy-tools-server.vercel.app/review').then(res => res.json()),);
     if (isLoading) {
         return <Loading></Loading>
     }

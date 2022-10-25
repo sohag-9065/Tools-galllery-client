@@ -27,16 +27,20 @@ const SignUp = () => {
     let signInErrorMesseage;
 
     const [token] = useToken(user);
-    const [userInfoUpdate] =  useProfileUpdate(userInfo);
+    // const [userInfoUpdate] =  useProfileUpdate(userInfo);
 
 
     let from = location.state?.from?.pathname || "/";
+
+    console.log(from);
 
     
    
 
     useEffect(() => {
+        console.log(token);
         if (token) {
+            console.log(token);
             navigate(from, { replace: true });
         }
 

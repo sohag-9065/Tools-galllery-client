@@ -8,9 +8,10 @@ const UserRow = ({ user, refetch, index, setDeleteProduct }) => {
 
     const { email, role } = user;
     const makeAdmin = () => {
-        fetch(`https://vercel-deploy-tools-server-dmeivwp9y-sohag-9065.vercel.app/user/admin/${user.email}`, {
+        fetch(`https://vercel-deploy-tools-server.vercel.app/user/admin/${user.email}`, {
             method: 'PUT',
             headers: {
+                'content-type': 'application/json',
                 'authorization': `Bearer ${localStorage.getItem('accessToken')}`
             }
         })
