@@ -9,7 +9,7 @@ const useProfileUpdate = (userInfo) => {
         // console.log(currentUser);
         if(email){
             
-            fetch(`http://localhost:5000/user/profile/${email}`,{
+            fetch(`https://vercel-deploy-tools-server-dmeivwp9y-sohag-9065.vercel.app/user/profile/${email}`,{
                 method: 'PUT',
                 headers: {
                     'content-type': 'application/json'

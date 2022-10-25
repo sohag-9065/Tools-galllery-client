@@ -13,7 +13,7 @@ const ToolPurchase = () => {
     const { toolId } = useParams();
     // console.log(user);
 
-    const { data: tool, isLoading, refetch } = useQuery('services', () => fetch(`http://localhost:5000/tool/${toolId}`, {
+    const { data: tool, isLoading, refetch } = useQuery('services', () => fetch(`https://vercel-deploy-tools-server-dmeivwp9y-sohag-9065.vercel.app/tool/${toolId}`, {
         method: 'GET',
         headers: {
             'content-type': 'application/json',
@@ -51,7 +51,7 @@ const ToolPurchase = () => {
         const updateQuantity = { available_quantity: newQuantity };
 
         // update quantity 
-        fetch(`http://localhost:5000/tool/${_id}`, {
+        fetch(`https://vercel-deploy-tools-server-dmeivwp9y-sohag-9065.vercel.app/tool/${_id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json',
@@ -80,7 +80,7 @@ const ToolPurchase = () => {
             description: description,
         }
         // sent to database of new tool information 
-        fetch('http://localhost:5000/order', {
+        fetch('https://vercel-deploy-tools-server-dmeivwp9y-sohag-9065.vercel.app/order', {
             method: "PUT",
             headers: {
                 'content-type': 'application/json',

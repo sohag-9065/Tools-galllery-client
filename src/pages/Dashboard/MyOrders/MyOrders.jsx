@@ -1,21 +1,22 @@
 import React, { useState } from 'react';
-import { Button } from 'react-daisyui';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useQuery } from 'react-query';
 import auth from '../../../firebase/firebase.config';
 import DeleteConfirmationModal from '../../shared/DeleteConfirmationModal';
 import Loading from '../../shared/Loading';
 import MyOrderCard from './MyOrderCard';
+import PaymentModal from './PaymentModal';
 
 const MyOrders = () => {
     const [user] = useAuthState(auth);
     const [deleteProduct, setDeleteProduct] = useState(false);
+    const [paymentModal, setPaymentModal] = useState(false);
 
     const url = "order";
 
     // useEffect( ,[])
 
-    const { data: tools, isLoading, refetch } = useQuery('tools', () => fetch(`http://localhost:5000/order/${user.email}`).then(res => res.json()),);
+    const { data: tools, isLoading, refetch } = useQuery('tools', () => fetch(`https://vercel-deploy-tools-server-dmeivwp9y-sohag-9065.vercel.app/order/${user.email}`).then(res => res.json()),);
 
     if (isLoading) {
         return <Loading></Loading>
@@ -35,8 +36,20 @@ const MyOrders = () => {
                             tool={tool}
                         >
                             <div className='flex justify-between mt-4'>
-                                <label onClick={() => setDeleteProduct(tool)} htmlFor="delete-confirm-modal" className="btn  btn-error">Cancel</label>
-                                <Button color="info">Payment</Button>
+                                {
+                                    tool.payment_id ?
+                                        <>
+                                            <p className='border-2 p-1 font-semibold text-lg'>Transection ID: {tool.payment_id}</p>
+                                        </>
+                                        :
+                                        <>
+                                            <label onClick={() => setDeleteProduct(tool)} htmlFor="delete-confirm-modal" className="btn  btn-error">Cancel</label>
+                                            <label onClick={() => setPaymentModal(tool)} htmlFor="delete-confirm-modal" className="btn  btn-info">Payment</label>
+                                        </>
+                                }
+
+
+
                             </div>
 
                         </MyOrderCard>)
@@ -51,6 +64,14 @@ const MyOrders = () => {
                         refetch={refetch}
                     >
                     </DeleteConfirmationModal>
+                }
+                {
+                    paymentModal && <PaymentModal
+                        paymentModal={paymentModal}
+                        setPaymentModal={setPaymentModal}
+                        refetch={refetch}
+                    >
+                    </PaymentModal>
                 }
             </div>
         </div>

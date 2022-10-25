@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Card } from 'react-daisyui';
+import {  Card } from 'react-daisyui';
 
 const MyOrderCard = ({ tool, children }) => {
     const { tool_id, img, tool_name, description, price, order_quantity } = tool;

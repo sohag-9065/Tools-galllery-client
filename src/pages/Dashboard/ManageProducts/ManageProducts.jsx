@@ -9,7 +9,7 @@ const ManageProducts = () => {
 
     // useEffect( ,[])
     const url = "tool";
-    const { data: tools, isLoading, refetch } = useQuery('all-tool', () => fetch('http://localhost:5000/tools').then(res => res.json()),);
+    const { data: tools, isLoading, refetch } = useQuery('all-tool', () => fetch('https://vercel-deploy-tools-server-dmeivwp9y-sohag-9065.vercel.app/tools').then(res => res.json()),);
 
     if (isLoading) {
         return <Loading></Loading>
