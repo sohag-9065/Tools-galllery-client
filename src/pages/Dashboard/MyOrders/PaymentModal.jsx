@@ -8,7 +8,7 @@ const PaymentModal = ({ paymentModal, setPaymentModal, refetch }) => {
     const handlePaymentButton = () => {
 
         // update quantity 
-        fetch(`https://vercel-deploy-tools-server.vercel.app/order/${tool_id}`, {
+        fetch(`https://vercel-deploy-tools-server-sohag-9065.vercel.app/order/${tool_id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json',

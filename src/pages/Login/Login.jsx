@@ -16,8 +16,7 @@ const Login = () => {
         error
     ] = useSignInWithEmailAndPassword(auth);
     const { register, formState: { errors }, reset, handleSubmit } = useForm();
-    // const [pathSignUp, setPathSignUp] = useState(false);
-
+    
     const navigate = useNavigate();
     const location = useLocation();
 
@@ -30,7 +29,6 @@ const Login = () => {
             navigate(from, { replace: true });
         }
     }, [token, from, navigate]);
-
 
     let signInErrorMesseage;
 
@@ -45,15 +43,8 @@ const Login = () => {
     const onSubmit = data => {
         const { email, password } = data;
         signInWithEmailAndPassword(email, password);
-        // console.log(data);
         reset();
     };
-
-    // if(pathSignUp){
-    //     location.pathname= from;
-    //     console.log(from);
-    //     return <Navigate to="/sign-up" state={{ from : location }} replace></Navigate>
-    // }
 
 
     return (

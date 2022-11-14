@@ -12,7 +12,7 @@ const MyProfile = () => {
     const { register, reset, handleSubmit } = useForm();
     const [loadingImg, setLodingImg] = useState(false);
 
-    const { data: users, isLoading, refetch } = useQuery('users', () => fetch(`https://vercel-deploy-tools-server.vercel.app/user/${user.email}`, {
+    const { data: users, isLoading, refetch } = useQuery('users', () => fetch(`https://vercel-deploy-tools-server-sohag-9065.vercel.app/user/${user.email}`, {
         method: 'GET',
         headers: {
             'content-type': 'application/json',
@@ -31,6 +31,7 @@ const MyProfile = () => {
 
     // console.log(users[0]);
     const { name, email, address, city, state, zip, username, website, img, bio } = users[0];
+    console.log(users[0])
 
 
 
@@ -72,7 +73,7 @@ const MyProfile = () => {
     };
 
     const handleUserInfoUpdate = userInfo => {
-        fetch(`https://vercel-deploy-tools-server.vercel.app/user/profile/${email}`, {
+        fetch(`https://vercel-deploy-tools-server-sohag-9065.vercel.app/user/profile/${email}`, {
             method: "PUT",
             headers: {
                 'content-type': 'application/json',

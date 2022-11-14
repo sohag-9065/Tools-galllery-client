@@ -16,7 +16,7 @@ const MyOrders = () => {
 
     // useEffect( ,[])
 
-    const { data: tools, isLoading, refetch } = useQuery('tools', () => fetch(`https://vercel-deploy-tools-server.vercel.app/order/${user.email}`).then(res => res.json()),);
+    const { data: tools, isLoading, refetch } = useQuery('tools', () => fetch(`https://vercel-deploy-tools-server-sohag-9065.vercel.app/order/${user.email}`).then(res => res.json()),);
 
     if (isLoading) {
         return <Loading></Loading>

@@ -6,7 +6,7 @@ import Loading from '../../shared/Loading';
 import ToolCard from '../../shared/ToolCard';
 
 const LatestTools = () => {
-    const { data: tools, isLoading } = useQuery('all-tool', () => fetch('https://vercel-deploy-tools-server.vercel.app/tools').then(res => res.json()),);
+    const { data: tools, isLoading } = useQuery('all-tool', () => fetch('https://vercel-deploy-tools-server-sohag-9065.vercel.app/tools').then(res => res.json()),);
 
     if (isLoading) {
         return <Loading></Loading>
@@ -17,7 +17,7 @@ const LatestTools = () => {
             <div className='bg-orange-100 mx-4 lg:mx-12 py-12 px-2 lg:px-10 rounded-2xl'>
                 <div className='grid grid-cols-1 lg:grid-cols-3  gap-2 lg:gap-6 '>
                     {
-                        tools.map((tool, index) => <ToolCard
+                        tools?.map((tool, index) => <ToolCard
                             key={index}
                             tool={tool}
                         >

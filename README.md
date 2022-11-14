@@ -2,9 +2,11 @@
 
 
 * live site: [click here](https://tools-gallery-91300.web.app/)
-* server link: [click here](https://vercel-deploy-tools-server.vercel.app/)
+* server link: [click here](https://vercel-deploy-tools-server-sohag-9065.vercel.app/)
 * client side private repo: [click here](https://github.com/sohag-9065/Tools-galllery-client)
 * server side private repo: [click here](https://github.com/sohag-9065/tools-gallery-server)
+
+
 
 
 

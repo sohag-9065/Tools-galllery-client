@@ -44,7 +44,7 @@ const AddAProduct = () => {
                         img: img
                     }
                     // sent to database of new tool information 
-                    fetch('https://vercel-deploy-tools-server.vercel.app/tools', {
+                    fetch('https://vercel-deploy-tools-server-sohag-9065.vercel.app/tools', {
                         method: "POST",
                         headers: {
                             'content-type': 'application/json',

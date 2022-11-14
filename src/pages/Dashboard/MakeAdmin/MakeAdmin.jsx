@@ -12,7 +12,7 @@ const MakeAdmin = () => {
     const url = "user";
 
 
-    const { data: users, isLoading , refetch } = useQuery('users', () => fetch('https://vercel-deploy-tools-server.vercel.app/user',{
+    const { data: users, isLoading , refetch } = useQuery('users', () => fetch('https://vercel-deploy-tools-server-sohag-9065.vercel.app/user',{
             method: 'GET',
             headers: {
                 'content-type': 'application/json',

@@ -3,7 +3,8 @@ import { Rating } from 'react-daisyui';
 import { FaUserAlt } from "react-icons/fa";
 
 const ReviewCard = ({ review }) => {
-    const { user_name, photoURL, user_rating, user_review } = review;
+    const { user_name,  user_rating, user_review } = review;
+    const photoURL = review?.review;
     // console.log(photoURL);
     let value = user_rating;
     let ratings = [];
