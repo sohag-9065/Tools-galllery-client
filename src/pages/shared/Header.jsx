@@ -14,7 +14,7 @@ const Header = () => {
     }
 
     const logout = () => {
-        console.log("hi");
+        // console.log("hi");
         signOut(auth);
         localStorage.removeItem('accessToken');
 

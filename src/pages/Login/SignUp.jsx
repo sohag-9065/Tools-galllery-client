@@ -32,7 +32,7 @@ const SignUp = () => {
 
     let from = location.state?.from?.pathname || "/";
 
-    console.log(from);
+    // console.log(from);
 
     
    
@@ -40,7 +40,7 @@ const SignUp = () => {
     useEffect(() => {
         console.log(token);
         if (token) {
-            console.log(token);
+            // console.log(token);
             navigate(from, { replace: true });
         }
 
@@ -57,7 +57,7 @@ const SignUp = () => {
 
     const onSubmit = async data => {
         const { email, password, name } = data;
-        console.log(data);
+        // console.log(data);
         setUserInfo({email: email, name: name});
 
         await createUserWithEmailAndPassword(email, password);

@@ -14,7 +14,7 @@ const DeleteConfirmationModal = ({ deleteProduct, setDeleteProduct, url, refetch
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data);
+                // console.log(data);
                 if (data.deletedCount) {
                     //  console.log(data.deletedCount);
                      toast.info('Item Delete', { autoClose: 500 })

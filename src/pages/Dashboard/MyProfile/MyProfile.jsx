@@ -31,7 +31,7 @@ const MyProfile = () => {
 
     // console.log(users[0]);
     const { name, email, address, city, state, zip, username, website, img, bio } = users[0];
-    console.log(users[0])
+    // console.log(users[0])
 
 
 
