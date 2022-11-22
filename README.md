@@ -6,7 +6,9 @@
 * client side private repo: [click here](https://github.com/sohag-9065/Tools-galllery-client)
 * server side private repo: [click here](https://github.com/sohag-9065/tools-gallery-server)
 
-
+## Check Admin Dashboard
+* admin email: hakim@gmail.com
+* admin pass : 111111
 
 
 
